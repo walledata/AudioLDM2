@@ -69,6 +69,8 @@ def save_wave(waveform, savepath, name="outwav", samplerate=16000):
             savepath, fname
         )
         print("Save audio to %s" % path)
+        if len(fname) > 255 or len(path) > 4096:
+            path = os.path.join(savepath, hex(hash(fname)))
         sf.write(path, waveform[i, 0], samplerate=samplerate)
 
 
